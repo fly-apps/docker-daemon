@@ -6,6 +6,6 @@ echo "Setting up Docker data directory"
 mkdir -p /data/docker
 
 echo "Configuring ipv6 for docker"
-ip6tables -t nat -A POSTROUTING -s 2001:db8:1::/64 ! -o docker0 -j MASQUERADE
+ip6tables-legacy -t nat -A POSTROUTING -s 2001:db8:1::/64 ! -o docker0 -j MASQUERADE
 
 echo "Done setting up docker!"
