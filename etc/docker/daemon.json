@@ -13,7 +13,7 @@
     "debug": true,
     "log-level": "debug",
     "features": {
-        "buildkit": false
+        "buildkit": true
     },
     "hosts": [
         "unix:///var/run/docker.sock",

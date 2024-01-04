@@ -1,8 +1,12 @@
-FROM docker/buildx-bin:v0.8 as buildx
+FROM docker/buildx-bin:v0.12 as buildx
 
-FROM docker:20
+FROM docker:24-dind
 
-RUN apk add bash ip6tables pigz sysstat procps lsof
+RUN apk add bash iptables-legacy pigz sysstat procps lsof \
+    && mv /sbin/iptables /sbin/iptables.original \
+    && mv /sbin/ip6tables /sbin/ip6tables.original \
+    && ln -s /sbin/iptables-legacy /sbin/iptables \
+    && ln -s /sbin/ip6tables-legacy /sbin/ip6tables
 
 COPY etc/docker/daemon.json /etc/docker/daemon.json
 
